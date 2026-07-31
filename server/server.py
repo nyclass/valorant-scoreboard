@@ -6,7 +6,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 DATA_FILE = os.path.join(
     BASE_DIR,
@@ -14,13 +16,14 @@ DATA_FILE = os.path.join(
     "scoreboard.json"
 )
 
+
 OVERLAY_DIR = os.path.join(
     BASE_DIR,
     "overlay"
 )
 
 
-# Overlay Startseite
+# Overlay anzeigen
 @app.route("/")
 def overlay():
     return send_from_directory(
@@ -29,7 +32,7 @@ def overlay():
     )
 
 
-# Overlay Dateien (CSS, JS, Bilder)
+# Overlay Dateien laden (CSS, JS, Bilder)
 @app.route("/<path:filename>")
 def overlay_files(filename):
     return send_from_directory(
@@ -38,7 +41,7 @@ def overlay_files(filename):
     )
 
 
-# API
+# Scoreboard API
 @app.route("/api/scoreboard")
 def get_scoreboard():
 
@@ -50,16 +53,13 @@ def get_scoreboard():
     return jsonify(data)
 
 
-def start():
+# Railway / Server Start
+if __name__ == "__main__":
 
     print("[SERVER] Flask Server läuft")
 
     app.run(
         host="0.0.0.0",
-        port=int(os.environ.get("PORT", 5000)),
+        port=int(os.environ.get("PORT", 8080)),
         debug=False
     )
-
-
-if __name__ == "__main__":
-    start()
