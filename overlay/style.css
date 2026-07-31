@@ -1,0 +1,44 @@
+body {
+
+    background: transparent;
+
+    font-family: Arial, sans-serif;
+
+}
+
+
+.scoreboard {
+
+    width: 300px;
+
+    background: rgba(0,0,0,0.7);
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:10px;
+
+}
+
+
+h1 {
+
+    text-align:center;
+
+    margin-top:0;
+
+}
+
+
+.player {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:8px;
+
+    font-size:22px;
+
+}
