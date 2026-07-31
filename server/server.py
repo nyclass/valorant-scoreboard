@@ -1,4 +1,3 @@
-
 from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 import json
@@ -21,7 +20,7 @@ OVERLAY_DIR = os.path.join(
 )
 
 
-# Overlay für OBS
+# Overlay Startseite
 @app.route("/")
 def overlay():
     return send_from_directory(
@@ -30,7 +29,7 @@ def overlay():
     )
 
 
-# CSS / JS / Bilder laden
+# Overlay Dateien (CSS, JS, Bilder)
 @app.route("/<path:filename>")
 def overlay_files(filename):
     return send_from_directory(
@@ -39,7 +38,7 @@ def overlay_files(filename):
     )
 
 
-# Scoreboard-Daten
+# API
 @app.route("/api/scoreboard")
 def get_scoreboard():
 
@@ -64,4 +63,3 @@ def start():
 
 if __name__ == "__main__":
     start()
-
