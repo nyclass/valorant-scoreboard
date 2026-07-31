@@ -1,4 +1,5 @@
-from flask import Flask, jsonify
+
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 import json
 import os
@@ -6,7 +7,6 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-# Pfad zur JSON-Datei
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DATA_FILE = os.path.join(
@@ -15,31 +15,53 @@ DATA_FILE = os.path.join(
     "scoreboard.json"
 )
 
+OVERLAY_DIR = os.path.join(
+    BASE_DIR,
+    "overlay"
+)
 
+
+# Overlay für OBS
 @app.route("/")
-def home():
-    return "Valorant Scoreboard Server läuft!"
+def overlay():
+    return send_from_directory(
+        OVERLAY_DIR,
+        "index.html"
+    )
 
 
+# CSS / JS / Bilder laden
+@app.route("/<path:filename>")
+def overlay_files(filename):
+    return send_from_directory(
+        OVERLAY_DIR,
+        filename
+    )
+
+
+# Scoreboard-Daten
 @app.route("/api/scoreboard")
 def get_scoreboard():
+
     with open(DATA_FILE, "r", encoding="utf-8") as file:
         data = json.load(file)
 
-    print(data)   # <-- diese Zeile hinzufügen
+    print(data)
 
-    return jsonify(data["players"])
+    return jsonify(data)
+
 
 def start():
 
-    print("[SERVER] Flask Server läuft auf Port 5000")
+    print("[SERVER] Flask Server läuft")
 
     app.run(
-        host="127.0.0.1",
-        port=5000,
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000)),
         debug=False
     )
 
 
 if __name__ == "__main__":
     start()
+

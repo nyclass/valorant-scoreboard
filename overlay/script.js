@@ -1,52 +1,77 @@
-async function updateScoreboard(){
 
-    const response = await fetch(
-        "http://127.0.0.1:5000/api/scoreboard"
-    );
+console.log("Scoreboard Script geladen");
 
+async function updateScoreboard() {
 
-    const players = await response.json();
+    try {
 
-
-    const container = document.getElementById(
-        "players"
-    );
-
-
-    container.innerHTML = "";
-
-
-    players.forEach(player => {
-
-
-        const div = document.createElement(
-            "div"
+        const response = await fetch(
+            "http://127.0.0.1:5000/api/scoreboard"
         );
 
+        const data = await response.json();
 
-        div.className = "player";
+        console.log("Daten vom Server:", data);
 
+        const players = data.players || data;
 
-        div.innerHTML = `
-            <span>${player.name}</span>
-            <span>${player.score}</span>
-        `;
-
-
-        container.appendChild(div);
+        console.log("Spieler:", players);
 
 
-    });
+        const container = document.getElementById("players");
 
+
+        if (!container) {
+            console.error("Kein #players Element gefunden");
+            return;
+        }
+
+
+        container.innerHTML = "";
+
+
+        players.forEach(player => {
+
+            const div = document.createElement("div");
+
+            div.className = "player";
+
+
+            div.innerHTML = `
+                <span class="player-name">
+                    ${player.name}
+                </span>
+
+                <span class="player-score">
+                    ${player.score}
+                </span>
+            `;
+
+
+            container.appendChild(div);
+
+        });
+
+
+    } catch (error) {
+
+        console.error(
+            "Scoreboard Fehler:",
+            error
+        );
+
+    }
 
 }
 
 
-
+// sofort laden
 updateScoreboard();
 
 
+// jede Sekunde aktualisieren
 setInterval(
     updateScoreboard,
     1000
 );
+
