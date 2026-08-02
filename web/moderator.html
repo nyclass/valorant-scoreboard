@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Moderator – Der Dümmste fliegt</title>
+    <link rel="stylesheet" href="/ui/styles.css">
+</head>
+<body class="moderator-page">
+    <header class="site-header">
+        <div>
+            <p class="page-label">Moderator</p>
+            <h1>Der Dümmste fliegt</h1>
+        </div>
+        <nav class="header-links" aria-label="Weitere Ansichten">
+            <a href="/buzzer" target="_blank" rel="noopener">Teilnehmer-Buzzer</a>
+            <a href="#players-heading">Spielerkarten</a>
+        </nav>
+    </header>
+
+    <main class="moderator-shell">
+        <section class="buzzer-panel" aria-labelledby="buzzer-heading">
+            <div class="status-block">
+                <p class="section-label">Buzzer-Status</p>
+                <h2 id="buzzer-heading" class="buzzer-status">Gesperrt</h2>
+                <p id="buzzer-help" class="status-help">Buzzer für die nächste Frage freigeben.</p>
+            </div>
+
+            <div class="first-buzz" aria-live="polite">
+                <p class="section-label">Erster Buzzer</p>
+                <strong id="first-player">Noch niemand</strong>
+                <button id="quick-winner" class="button button-secondary" type="button" disabled>
+                    Als Gewinner wählen
+                </button>
+            </div>
+
+            <div class="buzzer-actions">
+                <button id="release-buzzer" class="button button-ready" type="button">
+                    Buzzer freigeben
+                </button>
+                <button id="reset-buzzer" class="button button-danger" type="button">
+                    Zurücksetzen
+                </button>
+            </div>
+        </section>
+
+        <p id="message" class="message" role="status" aria-live="polite"></p>
+
+        <section class="players-section" aria-labelledby="players-heading">
+            <div class="players-toolbar">
+                <div>
+                    <p class="section-label">Spielstand</p>
+                    <h2 id="players-heading">Spieler &amp; Punkte</h2>
+                </div>
+
+                <form id="add-player-form" class="add-player-form">
+                    <label class="sr-only" for="player-name">Spielername</label>
+                    <input id="player-name" name="name" type="text" maxlength="40"
+                           placeholder="Spielername" autocomplete="off" required>
+                    <button class="button button-primary" type="submit">Spieler hinzufügen</button>
+                </form>
+            </div>
+
+            <div class="player-list-header" aria-hidden="true">
+                <span>Spieler</span>
+                <span>Punkte</span>
+                <span>Leben</span>
+                <span>Aktionen</span>
+            </div>
+            <div id="player-list" class="player-list"></div>
+            <p id="empty-players" class="empty-state" hidden>
+                Noch keine Spieler. Über das Feld oben kann die erste Person hinzugefügt werden.
+            </p>
+        </section>
+    </main>
+
+    <script src="/ui/moderator.js" defer></script>
+</body>
+</html>

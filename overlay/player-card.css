@@ -1,0 +1,78 @@
+:root {
+    --radius: 16px;
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+body {
+    padding: 8px;
+}
+
+.player-card {
+    display: inline-grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 24px;
+    width: min(380px, calc(100vw - 16px));
+    min-height: 76px;
+    padding: 12px 16px 12px 20px;
+    border: 1px solid rgba(190, 211, 236, 0.2);
+    border-radius: var(--radius);
+    color: #f7f3eb;
+    background: linear-gradient(100deg, rgba(23, 37, 56, 0.98), rgba(7, 16, 29, 0.98));
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.34);
+}
+
+.player-name {
+    overflow: hidden;
+    font-size: clamp(26px, 8vw, 36px);
+    font-weight: 400;
+    letter-spacing: 0.035em;
+    line-height: 1;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.player-lives {
+    display: inline-flex;
+    gap: 4px;
+    color: #ff676c;
+    font-family: "Segoe UI Symbol", "Arial Unicode MS", sans-serif;
+    font-size: clamp(30px, 9vw, 38px);
+    letter-spacing: 0;
+    line-height: 1;
+}
+
+.player-lives .is-empty {
+    color: #425064;
+}
+
+@media (max-width: 280px) {
+    body {
+        padding: 4px;
+    }
+
+    .player-card {
+        width: calc(100vw - 8px);
+        min-height: 64px;
+        gap: 12px;
+        padding: 8px 10px 8px 12px;
+    }
+}
+
+[hidden] {
+    display: none !important;
+}

@@ -1,24 +1,17 @@
 {
     "players": [
         {
+            "id": "324df77af8314eafb2da9e4a714f0b0b",
             "name": "Liam",
-            "score": 1
-        },
-        {
-            "name": "Spieler 2",
-            "score": -4
-        },
-        {
-            "name": "Spieler 3",
-            "score": 0
-        },
-        {
-            "name": "Spieler 4",
-            "score": 0
-        },
-        {
-            "name": "Spieler 5",
-            "score": 0
+            "score": 0,
+            "lives": 3
         }
-    ]
+    ],
+    "buzzer": {
+        "enabled": false,
+        "first_player_id": null,
+        "winner_player_id": null,
+        "round": 0
+    },
+    "updated_at": "2026-08-02T14:28:34.430556+00:00"
 }

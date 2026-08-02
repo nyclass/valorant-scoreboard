@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Dein Buzzer – Der Dümmste fliegt</title>
+    <link rel="stylesheet" href="/ui/styles.css">
+</head>
+<body class="participant-page">
+    <main class="participant-shell">
+        <header class="participant-header">
+            <h1>Der Dümmste fliegt</h1>
+            <p>Dein Buzzer</p>
+        </header>
+
+        <section id="connect-panel" class="connect-panel">
+            <form id="connect-form">
+                <label for="participant-name">Dein Name</label>
+                <input id="participant-name" name="name" type="text" maxlength="40"
+                       autocomplete="nickname" placeholder="Name eingeben" required>
+                <button class="button button-ready" type="submit">Verbinden</button>
+            </form>
+        </section>
+
+        <section id="buzzer-app" class="buzzer-app" hidden>
+            <div class="participant-status" aria-live="polite">
+                <p id="participant-status-label" class="section-label">Buzzer gesperrt</p>
+                <h2 id="participant-status-title">Warte auf den Moderator</h2>
+                <p id="participant-status-help">Der Buzzer wird gleich freigegeben.</p>
+            </div>
+
+            <button id="buzz-button" class="buzz-button" type="button" disabled>
+                <span>Buzz!</span>
+            </button>
+
+            <div class="participant-meta">
+                <div>
+                    <span>Verbunden als</span>
+                    <strong id="connected-name">–</strong>
+                </div>
+                <div>
+                    <span>Punkte</span>
+                    <strong id="connected-score">0</strong>
+                </div>
+                <div>
+                    <span>Leben</span>
+                    <strong id="connected-lives">3</strong>
+                </div>
+            </div>
+
+            <button id="disconnect-button" class="disconnect-button" type="button">Trennen</button>
+        </section>
+
+        <p id="participant-message" class="message" role="status" aria-live="polite"></p>
+    </main>
+
+    <script src="/ui/buzzer.js" defer></script>
+</body>
+</html>
